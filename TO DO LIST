@@ -1,0 +1,90 @@
+#QUESTION 1
+
+
+toDoList = []
+currentCount = 0
+
+end = False
+
+while(end != True):
+    if(len(toDoList) == 0):
+        print("YOU HAVE NO TASKS AT THE MOMENT!")
+    else:
+        print("YOUR CURRENT TO DO LIST: ")
+        for i in toDoList:
+            print(f"{i[0]}: {i[1]}")
+    option = int(input("ENTER 1 IF YOU WANT TO ADD SOME TASK\nENTER 2 IF YOU WANT TO DELETE SOME TASK\nENTER 3 IF YOU WANT TO UPDATE SOME TASK\nENTER 4 TO END THE APPLICATION:\n"))
+    
+    if(option == 1):
+        task = input("ENTER THE TASK TO ADD IT TO YOUR TO DO LIST: ")
+        currentCount += 1
+        toDoList.append([currentCount, task]) 
+        
+    elif(option == 2):
+        
+        if(len(toDoList) == 0):
+            print("THERE ARE CURRENTLY NO ITEMS IN THE LIST!")
+        
+        else:
+            for i in toDoList:
+                print("YOUR CURRENT TO DO LIST: ")
+                print(f"{i[0]}: {i[1]}")
+            valid = False
+            while(valid != True):
+                taskNo = int(input("ENTER THE TASK NUMBER TO DELETE IT FROM YOUR TO DO LIST: "))
+                if(taskNo > 0 and taskNo <= currentCount):
+                    valid = True
+                else:
+                    print("INVALID INPUT!")
+            removed = False
+            for i in toDoList:
+                if(taskNo == i[0]):
+                    toDoList.remove(i)
+                    currentCount -= 1
+                    removed = True
+                    
+            for i in range(0, currentCount):
+                toDoList[i][0] = i+1
+        
+
+            if(removed == False):
+                print("TASK NUMBER DOES NOT EXIST!")
+                
+    elif(option == 3):
+        
+        if(len(toDoList) == 0):
+            print("THERE ARE CURRENTLY NO ITEMS IN THE LIST!")
+        
+        else:
+            for i in toDoList:
+                print("YOUR CURRENT TO DO LIST: ")
+                print(f"{i[0]}: {i[1]}")
+            valid = False
+            while(valid != True):
+                taskNo = int(input("ENTER THE TASK NUMBER TO UPDATE IT IN YOUR TO DO LIST:"))
+                if(taskNo > 0 and taskNo <= currentCount):
+                    valid = True
+                else:
+                    print("INVALID INPUT!")
+                    
+            newTask = input("ENTER THE UPDATED TASK INFORMATION: ")
+            for i in toDoList:
+                if(taskNo == i[0]):
+                    toDoList[taskNo-1][1] = newTask
+                print("TASK WAS UPDATED SUCCESSFULLY!")
+
+    elif(option == 4):
+        end = True
+        print("APPLICATION ENDED SUCCESSFULLY!")
+        
+    else:
+        print("INVALID INPUT, CHOOSE AGAIN!")
+        
+    
+    
+            
+    
+    
+    
+    
+    
